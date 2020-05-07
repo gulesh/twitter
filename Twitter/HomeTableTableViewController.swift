@@ -38,6 +38,13 @@ class HomeTableTableViewController: UITableViewController {
         
     }
     
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadtweets()
+    }
+    
     //this function will load the twets into my array dictionary
        @objc func loadtweets(){
            numberOfTweet = 20
@@ -110,6 +117,10 @@ class HomeTableTableViewController: UITableViewController {
             cell.profileImageView.image = UIImage(data: imageData)
             
         }
+        cell.setFavourite(tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
+        
+        cell.setReTweeted( tweetArray[indexPath.row]["retweeted"] as! Bool)
         
         return cell
     }
